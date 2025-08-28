@@ -24,6 +24,9 @@ defmodule HelloWorldServer.MixProject do
     [
       {:plug, "~> 1.18"},
       {:plug_cowboy, "~> 2.7"}
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:poison, "~> 4.0"}
     ]
   end
 end
