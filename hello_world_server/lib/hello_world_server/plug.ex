@@ -1,7 +1,15 @@
 defmodule HelloWorldServer.Plug do
-  import Plug.Conn
+  use Plug.Router
 
-  def init(opts), do: opts
+  plug :match
+  plug :dispatch
 
-  def call(conn, _opts), do: send_resp(conn, 200, "hello world")
+  get "/" do
+    send_resp(conn, 200, "hello world")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not Found")
+  end
 end
+
