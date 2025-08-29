@@ -17,8 +17,7 @@ defmodule HelloWorldServer.MessageServer do
   @impl true
   def handle_info(:accept, state) do
     {:ok, client_socket} = :gen_tcp.accept(state.listen_socket)
-    # The ClientHandler will be created in a separate file in the next step.
-    Task.start(fn -> :gen_tcp.close(client_socket) end)
+    {:ok, _pid} = HelloWorldServer.ClientHandler.start_link(client_socket)
     Process.send(self(), :accept, [])
     {:noreply, state}
   end
