@@ -8,8 +8,7 @@ defmodule TodoServer.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: TodoServer.Worker.start_link(arg)
-      # {TodoServer.Worker, arg}
+      {Plug.Cowboy, scheme: :http, plug: TodoServer, options: [port: 4001]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
