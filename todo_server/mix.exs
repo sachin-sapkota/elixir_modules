@@ -23,7 +23,8 @@ defmodule TodoServer.MixProject do
   defp deps do
     [
       {:plug, "~> 1.18"},
-      {:plug_cowboy, "~> 2.7"}
+      {:plug_cowboy, "~> 2.7"},
+      {:poison, "~> 5.0"}
     ]
   end
 end
