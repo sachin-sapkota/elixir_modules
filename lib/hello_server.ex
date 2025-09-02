@@ -1,12 +1,15 @@
 defmodule HelloServer do
-  @moduledoc """
-  A simple module that returns a greeting.
-  """
+  use Plug.Router
 
-  @doc """
-  Returns a greeting.
-  """
-  def greeting do
-    "Hello, World!"
+  plug :match
+  plug :dispatch
+
+  get "/" do
+    send_resp(conn, 200, "Hello, World!")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not Found")
   end
 end
+
