@@ -26,4 +26,3 @@ defmodule MyApp.MixProject do
     ]
   end
 end
-
