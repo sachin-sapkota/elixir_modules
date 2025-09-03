@@ -4,15 +4,16 @@ defmodule HelloWorld do
   """
 
   @doc """
-  Hello world.
+  Prints "hello world" to the console.
 
   ## Examples
 
       iex> HelloWorld.hello()
-      :world
+      :ok
 
   """
   def hello do
-    :world
+    IO.puts("hello world")
   end
 end
+
