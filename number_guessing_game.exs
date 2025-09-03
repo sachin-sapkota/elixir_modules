@@ -49,15 +49,22 @@ defmodule NumberGuessingGame do
 
   defp play_again? do
     input = IO.gets("Would you like to play again? (y/n): ")
-    case String.trim(input) do
-      "y" -> start()
-      "n" -> IO.puts("Thanks for playing!")
+    case input do
+      :eof ->
+        IO.puts("Thanks for playing!")
+        exit(:normal)
       _ ->
-        IO.puts("Please enter 'y' or 'n'.")
-        play_again?()
+        case String.trim(input) do
+          "y" -> start()
+          "n" -> IO.puts("Thanks for playing!")
+          _ ->
+            IO.puts("Please enter 'y' or 'n'.")
+            play_again?()
+        end
     end
   end
 end
 
 NumberGuessingGame.start()
+
 
