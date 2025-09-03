@@ -44,7 +44,6 @@ defmodule HelloServerWeb do
         layouts: [html: HelloServerWeb.Layouts]
 
       import Plug.Conn
-      import HelloServerWeb.PageController
 
       unquote(verified_routes())
     end
@@ -66,4 +65,5 @@ defmodule HelloServerWeb do
     apply(__MODULE__, which, [])
   end
 end
+
 
