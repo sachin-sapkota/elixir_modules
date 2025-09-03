@@ -22,8 +22,10 @@ defmodule HelloWorld.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6.0"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:gettext, "~> 0.18"}
     ]
   end
 end
+
 
