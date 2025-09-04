@@ -41,6 +41,22 @@ defmodule GuessingGame do
     play_game_loop(target, 0)
   end
 
+  @doc """
+  Starts the game with a specified difficulty level.
+  """
+  def play_game_with_difficulty(difficulty) do
+    {min, max} = get_range_for_difficulty(difficulty)
+    play_game(min, max)
+  end
+
+  @doc """
+  Returns the range of numbers for a given difficulty level.
+  """
+  def get_range_for_difficulty(:easy), do: {1, 50}
+  def get_range_for_difficulty(:medium), do: {1, 100}
+  def get_range_for_difficulty(:hard), do: {1, 200}
+  def get_range_for_difficulty(_), do: {1, 100} # Default to medium
+
   defp play_game_loop(target, attempts) do
     guess = get_guess()
     attempts = attempts + 1
@@ -70,4 +86,5 @@ defmodule GuessingGame do
     end
   end
 end
+
 
