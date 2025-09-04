@@ -1,18 +1,14 @@
 defmodule WebServer do
-  @moduledoc """
-  Documentation for `WebServer`.
-  """
+  import Plug.Conn
 
-  @doc """
-  Hello world.
+  def init(options) do
+    options
+  end
 
-  ## Examples
-
-      iex> WebServer.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def call(conn, _opts) do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "Hello, World!")
   end
 end
+
