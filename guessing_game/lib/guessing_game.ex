@@ -70,6 +70,10 @@ defmodule GuessingGame do
   end
 end
 
+# Call the start function to begin the game when the module is run
+GuessingGame.start()
+
+
 
 
 
