@@ -37,12 +37,43 @@ defmodule GuessingGame do
   end
 
   @doc """
+  Game loop that continues until the user guesses the correct number.
+  """
+  def game_loop(target, attempts \\ 0) do
+    guess = get_user_input()
+
+    case guess do
+      :error ->
+        IO.puts("Invalid input. Please enter a number.")
+        game_loop(target, attempts)
+
+      _ ->
+        attempts = attempts + 1
+
+        case compare_guess(guess, target) do
+          :correct ->
+            IO.puts("Congratulations! You guessed the number in #{attempts} attempts.")
+            :ok
+
+          :too_high ->
+            IO.puts("Too high! Try again.")
+            game_loop(target, attempts)
+
+          :too_low ->
+            IO.puts("Too low! Try again.")
+            game_loop(target, attempts)
+        end
+    end
+  end
+
+  @doc """
   Starts the number guessing game.
   """
   def start_game do
     # Implementation will be added in subsequent steps
   end
 end
+
 
 
 
