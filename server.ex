@@ -11,5 +11,14 @@ defmodule Server do
   match _ do
     send_resp(conn, 404, "Not found")
   end
+
+  def init(options) do
+    options
+  end
+
+  def call(conn, options) do
+    super(conn, options)
+  end
 end
+
 
