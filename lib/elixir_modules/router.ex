@@ -5,10 +5,11 @@ defmodule ElixirModules.Router do
   plug :dispatch
 
   get "/" do
-    send_resp(conn, 200, "Hello, world!")
+    ElixirModules.Handler.call(conn, [])
   end
 
   match _ do
     send_resp(conn, 404, "Not found")
   end
 end
+
