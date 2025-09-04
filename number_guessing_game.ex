@@ -96,6 +96,10 @@ defmodule NumberGuessingGame do
   end
 end
 
+# Start the game with a default maximum value of 100
+NumberGuessingGame.start_game(100)
+
+
 
 
 
