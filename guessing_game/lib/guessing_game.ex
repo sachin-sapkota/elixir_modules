@@ -22,12 +22,28 @@ defmodule GuessingGame do
   end
 
   @doc """
+  Compares the user's guess to the target number.
+  """
+  def compare_guess(guess, target) when guess == target do
+    :correct
+  end
+
+  def compare_guess(guess, target) when guess > target do
+    :too_high
+  end
+
+  def compare_guess(guess, target) when guess < target do
+    :too_low
+  end
+
+  @doc """
   Starts the number guessing game.
   """
   def start_game do
     # Implementation will be added in subsequent steps
   end
 end
+
 
 
 
