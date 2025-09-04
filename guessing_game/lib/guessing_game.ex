@@ -1,18 +1,13 @@
 defmodule GuessingGame do
   @moduledoc """
-  Documentation for `GuessingGame`.
+  A simple number guessing game.
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> GuessingGame.hello()
-      :world
-
+  Generates a random number between 1 and 100.
   """
-  def hello do
-    :world
+  def generate_random_number do
+    Enum.random(1..100)
   end
 end
+
