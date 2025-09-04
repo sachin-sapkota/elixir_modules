@@ -1,0 +1,2 @@
+defmodule NumberGuessingGame do
+end
