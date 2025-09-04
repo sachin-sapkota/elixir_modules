@@ -21,6 +21,17 @@ defmodule NumberGuessingGame do
   def check_guess(guess, target) when guess > target, do: :too_high
   def check_guess(guess, target) when guess < target, do: :too_low
 
+  def play_again() do
+    IO.puts("Do you want to play again? (y/n)")
+    case String.trim(IO.gets(">")) do
+      "y" -> true
+      "n" -> false
+      _ -> 
+        IO.puts("Invalid input. Please enter 'y' or 'n'.")
+        play_again()
+    end
+  end
+
   defp play_round(random_number) do
     guess = get_guess()
     case check_guess(guess, random_number) do
@@ -40,6 +51,7 @@ defmodule NumberGuessingGame do
     end
   end
 end
+
 
 
 
