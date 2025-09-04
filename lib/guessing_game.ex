@@ -57,6 +57,13 @@ defmodule GuessingGame do
   def get_range_for_difficulty(:hard), do: {1, 200}
   def get_range_for_difficulty(_), do: {1, 100} # Default to medium
 
+  @doc """
+  Displays the number of attempts taken by the user.
+  """
+  def display_attempts(attempts) do
+    IO.puts("Number of attempts: #{attempts}")
+  end
+
   defp play_game_loop(target, attempts) do
     guess = get_guess()
     attempts = attempts + 1
@@ -86,5 +93,6 @@ defmodule GuessingGame do
     end
   end
 end
+
 
 
