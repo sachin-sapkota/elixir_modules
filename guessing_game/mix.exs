@@ -27,4 +27,3 @@ defmodule GuessingGame.MixProject do
     ]
   end
 end
-
