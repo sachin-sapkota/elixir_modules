@@ -15,6 +15,13 @@ defmodule GuessingGame do
   """
   def get_user_guess do
     guess = IO.gets("Enter your guess (1-100): ")
+    
+    # Handle EOF case
+    if guess == :eof do
+      IO.puts("Exiting game...")
+      System.halt(0)
+    end
+    
     case Integer.parse(String.trim(guess)) do
       {num, _} when num >= 1 and num <= 100 -> num
       _ ->
@@ -66,6 +73,7 @@ end
 
 # Call the start function to begin the game when the module is run
 GuessingGame.start()
+
 
 
 
