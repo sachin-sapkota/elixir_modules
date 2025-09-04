@@ -15,6 +15,7 @@ defmodule GuessingGame do
   """
   def get_user_input do
     input = IO.gets("Enter your guess (1-100): ")
+
     case Integer.parse(String.trim(input)) do
       {number, _} -> number
       :error -> :error
@@ -76,9 +77,3 @@ defmodule GuessingGame do
     game_loop(target)
   end
 end
-
-
-
-
-
-
