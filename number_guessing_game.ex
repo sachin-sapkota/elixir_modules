@@ -24,5 +24,17 @@ defmodule NumberGuessingGame do
         play_round(random_number)
     end
   end
+
+  defp get_guess() do
+    IO.puts("Enter your guess:")
+    input = IO.gets("") |> String.trim()
+    case Integer.parse(input) do
+      {number, _} -> number
+      :error -> 
+        IO.puts("Invalid input. Please enter a number.")
+        get_guess()
+    end
+  end
 end
+
 
