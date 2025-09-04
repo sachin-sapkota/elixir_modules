@@ -55,7 +55,8 @@ defmodule GuessingGame do
   def get_range_for_difficulty(:easy), do: {1, 50}
   def get_range_for_difficulty(:medium), do: {1, 100}
   def get_range_for_difficulty(:hard), do: {1, 200}
-  def get_range_for_difficulty(_), do: {1, 100} # Default to medium
+  # Default to medium
+  def get_range_for_difficulty(_), do: {1, 100}
 
   @doc """
   Displays the number of attempts taken by the user.
@@ -68,8 +69,10 @@ defmodule GuessingGame do
   Provides hints to the user based on their guess.
   """
   def provide_hint(:correct, _target, _guess), do: "Congratulations! You guessed the number."
+
   def provide_hint(:too_high, target, guess) do
     difference = guess - target
+
     cond do
       difference > 20 -> "Too high! You're way off."
       difference > 10 -> "Too high! You're getting close."
@@ -77,8 +80,10 @@ defmodule GuessingGame do
       true -> "Too high! You're almost there."
     end
   end
+
   def provide_hint(:too_low, target, guess) do
     difference = target - guess
+
     cond do
       difference > 20 -> "Too low! You're way off."
       difference > 10 -> "Too low! You're getting close."
@@ -108,15 +113,14 @@ defmodule GuessingGame do
 
   defp get_guess() do
     input = IO.gets("Enter your guess: ")
+
     case Integer.parse(String.trim(input)) do
-      {number, _} -> number
-      :error -> 
+      {number, _} ->
+        number
+
+      :error ->
         IO.puts("Invalid input. Please enter a number.")
         get_guess()
     end
   end
 end
-
-
-
-
