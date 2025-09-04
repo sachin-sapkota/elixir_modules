@@ -1,18 +1,13 @@
 defmodule GuessingGame do
   @moduledoc """
-  Documentation for `GuessingGame`.
+  A simple number guessing game.
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> GuessingGame.hello()
-      :world
-
+  Starts the number guessing game.
   """
-  def hello do
-    :world
+  def start_game do
+    # Implementation will be added in subsequent steps
   end
 end
+
