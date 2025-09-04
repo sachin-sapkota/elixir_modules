@@ -64,6 +64,29 @@ defmodule GuessingGame do
     IO.puts("Number of attempts: #{attempts}")
   end
 
+  @doc """
+  Provides hints to the user based on their guess.
+  """
+  def provide_hint(:correct, _target, _guess), do: "Congratulations! You guessed the number."
+  def provide_hint(:too_high, target, guess) do
+    difference = guess - target
+    cond do
+      difference > 20 -> "Too high! You're way off."
+      difference > 10 -> "Too high! You're getting close."
+      difference > 5 -> "Too high! You're very close."
+      true -> "Too high! You're almost there."
+    end
+  end
+  def provide_hint(:too_low, target, guess) do
+    difference = target - guess
+    cond do
+      difference > 20 -> "Too low! You're way off."
+      difference > 10 -> "Too low! You're getting close."
+      difference > 5 -> "Too low! You're very close."
+      true -> "Too low! You're almost there."
+    end
+  end
+
   defp play_game_loop(target, attempts) do
     guess = get_guess()
     attempts = attempts + 1
@@ -93,6 +116,7 @@ defmodule GuessingGame do
     end
   end
 end
+
 
 
 
