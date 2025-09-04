@@ -70,9 +70,13 @@ defmodule GuessingGame do
   Starts the number guessing game.
   """
   def start_game do
-    # Implementation will be added in subsequent steps
+    IO.puts("Welcome to the Number Guessing Game!")
+    IO.puts("I'm thinking of a number between 1 and 100.")
+    target = generate_random_number()
+    game_loop(target)
   end
 end
+
 
 
 
