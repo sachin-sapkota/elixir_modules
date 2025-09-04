@@ -18,18 +18,23 @@ defmodule TodoCLI do
     IO.puts("4. Exit")
     IO.write("Choose an option: ")
 
-    case IO.gets("") |> String.trim() |> String.to_integer() do
-      {:ok, 1} ->
-        add_task(todo_list)
-      {:ok, 2} ->
-        list_tasks(todo_list)
-      {:ok, 3} ->
-        remove_task(todo_list)
-      {:ok, 4} ->
-        IO.puts("Goodbye!")
-      _ ->
-        IO.puts("Invalid option. Please try again.")
-        run(todo_list)
+    case IO.gets("") do
+      :eof ->
+        IO.puts("\\nGoodbye!")
+      input ->
+        case input |> String.trim() |> String.to_integer() do
+          {:ok, 1} ->
+            add_task(todo_list)
+          {:ok, 2} ->
+            list_tasks(todo_list)
+          {:ok, 3} ->
+            remove_task(todo_list)
+          {:ok, 4} ->
+            IO.puts("Goodbye!")
+          _ ->
+            IO.puts("Invalid option. Please try again.")
+            run(todo_list)
+        end
     end
   end
 
@@ -81,3 +86,4 @@ defmodule TodoCLI do
     end
   end
 end
+
