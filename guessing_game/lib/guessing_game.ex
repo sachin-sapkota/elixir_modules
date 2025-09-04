@@ -13,12 +13,15 @@ defmodule GuessingGame do
 
   defp play(secret_number) do
     guess = get_guess()
+
     case check_guess(guess, secret_number) do
       :correct ->
         IO.puts("Congratulations! You guessed the number #{secret_number} correctly!")
+
       :too_high ->
         IO.puts("Too high! Try again.")
         play(secret_number)
+
       :too_low ->
         IO.puts("Too low! Try again.")
         play(secret_number)
@@ -27,9 +30,12 @@ defmodule GuessingGame do
 
   defp get_guess do
     input = IO.gets("Guess a number between 1 and 100: ")
+
     case Integer.parse(input) do
-      {number, _} -> number
-      :error -> 
+      {number, _} ->
+        number
+
+      :error ->
         IO.puts("Please enter a valid number.")
         get_guess()
     end
@@ -39,4 +45,3 @@ defmodule GuessingGame do
   defp check_guess(guess, secret_number) when guess > secret_number, do: :too_high
   defp check_guess(guess, secret_number) when guess < secret_number, do: :too_low
 end
-
