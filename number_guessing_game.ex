@@ -15,5 +15,17 @@ defmodule NumberGuessingGame do
   def generate_secret_number(max_value) do
     Enum.random(1..max_value)
   end
+
+  @doc """
+  Prompts the user for a guess and converts the input to an integer.
+  
+  ## Returns
+  - An integer representing the user's guess
+  """
+  def get_user_guess() do
+    input = IO.gets("Enter your guess: ")
+    String.to_integer(String.trim(input))
+  end
 end
+
 
