@@ -36,6 +36,21 @@ defmodule GuessingGame do
   end
 
   @doc """
+  Main game loop that continues until the user guesses the correct number.
+  """
+  def game_loop(secret_number) do
+    guess = get_user_guess()
+    case compare_guess(guess, secret_number) do
+      {:continue, message} -> 
+        IO.puts(message)
+        game_loop(secret_number)
+      {:win, message} -> 
+        IO.puts(message)
+        IO.puts("You win!")
+    end
+  end
+
+  @doc """
   Gets user input for their guess.
   """
   def get_user_guess do
@@ -44,6 +59,7 @@ defmodule GuessingGame do
     |> Integer.parse()
   end
 end
+
 
 
 
