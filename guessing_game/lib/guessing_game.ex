@@ -10,6 +10,9 @@ defmodule GuessingGame do
     Enum.random(1..100)
   end
 
+  @doc """
+  Gets user input for their guess.
+  """
   def get_user_guess do
     guess = IO.gets("Enter your guess (1-100): ")
     case Integer.parse(String.trim(guess)) do
@@ -59,19 +62,11 @@ defmodule GuessingGame do
     secret_number = generate_random_number()
     game_loop(secret_number)
   end
-
-  @doc """
-  Gets user input for their guess.
-  """
-  def get_user_guess do
-    IO.gets("Enter your guess (1-100): ")
-    |> String.trim()
-    |> Integer.parse()
-  end
 end
 
 # Call the start function to begin the game when the module is run
 GuessingGame.start()
+
 
 
 
