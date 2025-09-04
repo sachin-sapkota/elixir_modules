@@ -6,6 +6,21 @@ defmodule NumberGuessingGame do
     play_round(random_number)
   end
 
+  def get_guess() do
+    IO.puts("Enter your guess:")
+    input = IO.gets(">")
+    case Integer.parse(String.trim(input)) do
+      {number, _} -> number
+      :error -> 
+        IO.puts("Invalid input. Please enter a number.")
+        get_guess()
+    end
+  end
+
+  def check_guess(guess, target) when guess == target, do: :correct
+  def check_guess(guess, target) when guess > target, do: :too_high
+  def check_guess(guess, target) when guess < target, do: :too_low
+
   defp play_round(random_number) do
     guess = get_guess()
     case check_guess(guess, random_number) do
@@ -24,17 +39,7 @@ defmodule NumberGuessingGame do
         play_round(random_number)
     end
   end
-
-  defp get_guess() do
-    IO.puts("Enter your guess:")
-    input = IO.gets("") |> String.trim()
-    case Integer.parse(input) do
-      {number, _} -> number
-      :error -> 
-        IO.puts("Invalid input. Please enter a number.")
-        get_guess()
-    end
-  end
 end
+
 
 
