@@ -51,6 +51,16 @@ defmodule GuessingGame do
   end
 
   @doc """
+  Starts the game and calls the game loop.
+  """
+  def start do
+    IO.puts("Welcome to the Number Guessing Game!")
+    IO.puts("I'm thinking of a number between 1 and 100.")
+    secret_number = generate_random_number()
+    game_loop(secret_number)
+  end
+
+  @doc """
   Gets user input for their guess.
   """
   def get_user_guess do
@@ -59,6 +69,7 @@ defmodule GuessingGame do
     |> Integer.parse()
   end
 end
+
 
 
 
