@@ -23,8 +23,18 @@ defmodule NumberGuessingGame do
   - An integer representing the user's guess
   """
   def get_user_guess() do
-    input = IO.gets("Enter your guess: ")
-    String.to_integer(String.trim(input))
+    case IO.gets("Enter your guess: ") do
+      :eof ->
+        IO.puts("EOF received. Exiting game.")
+        System.halt(0)
+      input when is_binary(input) ->
+        case Integer.parse(String.trim(input)) do
+          {number, _} -> number
+          :error -> 
+            IO.puts("Invalid input. Please enter a valid integer.")
+            get_user_guess()
+        end
+    end
   end
 
   @doc """
@@ -84,6 +94,7 @@ end
 
 # Start the game with a default maximum value of 100
 NumberGuessingGame.start_game(100)
+
 
 
 
