@@ -12,3 +12,4 @@ defmodule Server do
     send_resp(conn, 404, "Not found")
   end
 end
+
