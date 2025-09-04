@@ -26,6 +26,27 @@ defmodule NumberGuessingGame do
     input = IO.gets("Enter your guess: ")
     String.to_integer(String.trim(input))
   end
+
+  @doc """
+  Compares the user's guess to the secret number.
+  
+  ## Parameters
+  - guess: The user's guess
+  - secret_number: The randomly generated secret number
+  
+  ## Returns
+  - :too_high if the guess is higher than the secret number
+  - :too_low if the guess is lower than the secret number
+  - :correct if the guess matches the secret number
+  """
+  def compare_guess(guess, secret_number) do
+    cond do
+      guess > secret_number -> :too_high
+      guess < secret_number -> :too_low
+      guess == secret_number -> :correct
+    end
+  end
 end
+
 
 
