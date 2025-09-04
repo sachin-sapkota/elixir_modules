@@ -9,11 +9,17 @@ defmodule NumberGuessingGame do
   def get_guess() do
     IO.puts("Enter your guess:")
     input = IO.gets(">")
-    case Integer.parse(String.trim(input)) do
-      {number, _} -> number
-      :error -> 
-        IO.puts("Invalid input. Please enter a number.")
-        get_guess()
+    case input do
+      :eof -> 
+        IO.puts("No input received. Exiting game.")
+        System.halt(0)
+      _ ->
+        case Integer.parse(String.trim(input)) do
+          {number, _} -> number
+          :error -> 
+            IO.puts("Invalid input. Please enter a number.")
+            get_guess()
+        end
     end
   end
 
@@ -51,6 +57,7 @@ defmodule NumberGuessingGame do
     end
   end
 end
+
 
 
 
