@@ -47,6 +47,20 @@ defmodule NumberGuessingGame do
     end
   end
 
+  def game_loop(secret_number, max_value) do
+    guess = get_user_guess()
+    case compare_guess(guess, secret_number) do
+      :too_high ->
+        IO.puts("Too high!")
+        game_loop(secret_number, max_value)
+      :too_low ->
+        IO.puts("Too low!")
+        game_loop(secret_number, max_value)
+      :correct ->
+        IO.puts("Correct! You guessed the number!")
+    end
+  end
+
   @doc """
   Main game loop that recursively prompts the user for guesses until they guess correctly.
   
@@ -69,6 +83,7 @@ defmodule NumberGuessingGame do
     end
   end
 end
+
 
 
 
