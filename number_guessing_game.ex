@@ -29,12 +29,19 @@ defmodule NumberGuessingGame do
 
   def play_again() do
     IO.puts("Do you want to play again? (y/n)")
-    case String.trim(IO.gets(">")) do
-      "y" -> true
-      "n" -> false
-      _ -> 
-        IO.puts("Invalid input. Please enter 'y' or 'n'.")
-        play_again()
+    input = IO.gets(">")
+    case input do
+      :eof -> 
+        IO.puts("No input received. Exiting game.")
+        false
+      _ ->
+        case String.trim(input) do
+          "y" -> true
+          "n" -> false
+          _ -> 
+            IO.puts("Invalid input. Please enter 'y' or 'n'.")
+            play_again()
+        end
     end
   end
 
@@ -57,6 +64,7 @@ defmodule NumberGuessingGame do
     end
   end
 end
+
 
 
 
