@@ -21,6 +21,24 @@ defmodule GuessingGame do
   end
 
   @doc """
+  Compares the user's guess to the random number and provides feedback.
+  """
+  def compare_guess(guess, target) when guess < target do
+    IO.puts("Too low!")
+    :continue
+  end
+
+  def compare_guess(guess, target) when guess > target do
+    IO.puts("Too high!")
+    :continue
+  end
+
+  def compare_guess(guess, target) when guess == target do
+    IO.puts("Correct! You guessed the number!")
+    :win
+  end
+
+  @doc """
   Gets user input for their guess.
   """
   def get_user_guess do
@@ -29,6 +47,7 @@ defmodule GuessingGame do
     |> Integer.parse()
   end
 end
+
 
 
 
