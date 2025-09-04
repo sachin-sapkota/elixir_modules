@@ -30,6 +30,12 @@ defmodule GuessingGame do
 
   defp get_guess do
     input = IO.gets("Enter your guess: ")
+    # Handle EOF condition
+    if input == :eof do
+      IO.puts("Input stream closed. Exiting game.")
+      System.halt(0)
+    end
+    
     case Integer.parse(String.trim(input)) do
       {number, _} -> number
       :error -> 
@@ -38,4 +44,5 @@ defmodule GuessingGame do
     end
   end
 end
+
 
