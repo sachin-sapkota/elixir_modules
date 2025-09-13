@@ -1,0 +1,105 @@
+defmodule NumberGuessingGame do
+  @moduledoc """
+  A simple number guessing game implemented in Elixir.
+  """
+
+  @doc """
+  Generates a random secret number between 1 and the given maximum value.
+  
+  ## Parameters
+  - max_value: The upper limit for the random number (inclusive)
+  
+  ## Returns
+  - A random integer between 1 and max_value
+  """
+  def generate_secret_number(max_value) do
+    Enum.random(1..max_value)
+  end
+
+  @doc """
+  Prompts the user for a guess and converts the input to an integer.
+  
+  ## Returns
+  - An integer representing the user's guess
+  """
+  def get_user_guess() do
+    case IO.gets("Enter your guess: ") do
+      :eof ->
+        IO.puts("EOF received. Exiting game.")
+        System.halt(0)
+      input when is_binary(input) ->
+        case Integer.parse(String.trim(input)) do
+          {number, _} -> number
+          :error -> 
+            IO.puts("Invalid input. Please enter a valid integer.")
+            get_user_guess()
+        end
+    end
+  end
+
+  @doc """
+  Compares the user's guess to the secret number.
+  
+  ## Parameters
+  - guess: The user's guess
+  - secret_number: The randomly generated secret number
+  
+  ## Returns
+  - :too_high if the guess is higher than the secret number
+  - :too_low if the guess is lower than the secret number
+  - :correct if the guess matches the secret number
+  """
+  def compare_guess(guess, secret_number) do
+    cond do
+      guess > secret_number -> :too_high
+      guess < secret_number -> :too_low
+      guess == secret_number -> :correct
+    end
+  end
+
+  @doc """
+  Main game loop that recursively prompts the user for guesses until they guess correctly.
+  
+  ## Parameters
+  - secret_number: The randomly generated secret number
+  - max_value: The upper limit for the random number (used for recursive calls)
+  """
+  def game_loop(secret_number, max_value) do
+    guess = get_user_guess()
+    case compare_guess(guess, secret_number) do
+      :too_high ->
+        IO.puts("Too high!")
+        game_loop(secret_number, max_value)
+      :too_low ->
+        IO.puts("Too low!")
+        game_loop(secret_number, max_value)
+      :correct ->
+        IO.puts("Correct! You guessed the number!")
+    end
+  end
+
+  @doc """
+  Starts the number guessing game with the specified maximum value.
+  
+  ## Parameters
+  - max_value: The upper limit for the random number (inclusive)
+  """
+  def start_game(max_value) do
+    secret_number = generate_secret_number(max_value)
+    IO.puts("Welcome to the Number Guessing Game!")
+    IO.puts("I'm thinking of a number between 1 and #{max_value}.")
+    game_loop(secret_number, max_value)
+  end
+end
+
+# Start the game with a default maximum value of 100
+NumberGuessingGame.start_game(100)
+
+
+
+
+
+
+
+
+
