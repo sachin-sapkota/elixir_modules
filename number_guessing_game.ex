@@ -1,0 +1,72 @@
+defmodule NumberGuessingGame do
+  def start_game() do
+    random_number = Enum.random(1..100)
+    IO.puts("Welcome to the Number Guessing Game!")
+    IO.puts("I'm thinking of a number between 1 and 100.")
+    play_round(random_number)
+  end
+
+  def get_guess() do
+    IO.puts("Enter your guess:")
+    input = IO.gets(">")
+    case input do
+      :eof -> 
+        IO.puts("No input received. Exiting game.")
+        System.halt(0)
+      _ ->
+        case Integer.parse(String.trim(input)) do
+          {number, _} -> number
+          :error -> 
+            IO.puts("Invalid input. Please enter a number.")
+            get_guess()
+        end
+    end
+  end
+
+  def check_guess(guess, target) when guess == target, do: :correct
+  def check_guess(guess, target) when guess > target, do: :too_high
+  def check_guess(guess, target) when guess < target, do: :too_low
+
+  def play_again() do
+    IO.puts("Do you want to play again? (y/n)")
+    input = IO.gets(">")
+    case input do
+      :eof -> 
+        IO.puts("No input received. Exiting game.")
+        false
+      _ ->
+        case String.trim(input) do
+          "y" -> true
+          "n" -> false
+          _ -> 
+            IO.puts("Invalid input. Please enter 'y' or 'n'.")
+            play_again()
+        end
+    end
+  end
+
+  defp play_round(random_number) do
+    guess = get_guess()
+    case check_guess(guess, random_number) do
+      :correct ->
+        IO.puts("Congratulations! You guessed the number.")
+        if play_again() do
+          start_game()
+        else
+          IO.puts("Thanks for playing!")
+        end
+      :too_high ->
+        IO.puts("Too high! Try again.")
+        play_round(random_number)
+      :too_low ->
+        IO.puts("Too low! Try again.")
+        play_round(random_number)
+    end
+  end
+end
+
+
+
+
+
+
